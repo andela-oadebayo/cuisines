@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :recipes
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -54,5 +55,6 @@ Rails.application.routes.draw do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
-  #   end
+  #   end  
+  root 'recipes#index'
 end

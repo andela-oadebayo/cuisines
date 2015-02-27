@@ -1,7 +1,0 @@
-= form_for(@recipe) do |f|
-	-if @recipe.errors.any?
-		%div#error_explanation
-			%h2= pluralize(@recipe.errors.count, "error") 
-
-			%ul
-			-@recipe
