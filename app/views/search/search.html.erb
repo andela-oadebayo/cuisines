@@ -1,0 +1,23 @@
+<h1>Articles Search</h1>
+
+<%= form_for search_path, method: :get do |f| %>
+    <p>
+      <%= f.label "Search for" %>
+      <%= text_field_tag :q, params[:q] %>
+      <%= submit_tag "Go", name: nil %>
+    </p>
+<% end %>
+
+<ul>
+  <% if @recipes.empty? %>
+
+  <% else%>
+      <% @recipes.each do |recipe| %>
+          <li>
+            <h3>
+              <%= link_to recipe.title, controller: "recipes", action: "show", id: recipe._id%>
+            </h3>
+          </li>
+      <% end %>
+  <%end%>
+</ul>

@@ -1,44 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
-</p>
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2><%= @recipe.title %></h2></div>
 
-<p>
-  <strong>Cooking time:</strong>
-  <%= @recipe.cooking_time %>
-</p>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item"><h4>Cooking Time:</h4></br></h3><%= @recipe.cooking_time%>Hrs</li>
+    <li class="list-group-item"><h4>Difficulty level:</h4></br></h3><%= @recipe.difficulty_level%></li>
+    <li class="list-group-item"><h4>Food Preference:</h4></br></h3><%= @recipe.food_preference.name%></li>
+    <li class="list-group-item"><h4>Food Type:</h4></br></h3><%= @recipe.food_type.name%></li>
+    <li class="list-group-item"><h4>Cuisine</h4></br></h3><%= @recipe.cuisine.name%></li>
+  </ul>
+  <div class="panel-body">
+    <p><h4>Procedure: </h4></br></h3><%= @recipe.procedure%></p>
+  </div>
+  <div class="panel-footer clearfix">
+    <div class="pull-right">
+      <%= link_to 'Go Back', recipes_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Difficulty level:</strong>
-  <%= @recipe.difficulty_level %>
-</p>
-
-<p>
-  <strong>Food type:</strong>
-  <%= @recipe.food_type_id %>
-</p>
-
-<p>
-  <strong>Food preference:</strong>
-  <%= @recipe.food_preference_id %>
-</p>
-
-<p>
-  <strong>Cuisine:</strong>
-  <%= @recipe.cuisine_id %>
-</p>
-
-<p>
-  <strong>Ingredients:</strong>
-  <%= @recipe.ingredients %>
-</p>
-
-<p>
-  <strong>Procedure:</strong>
-  <%= @recipe.procedure %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>

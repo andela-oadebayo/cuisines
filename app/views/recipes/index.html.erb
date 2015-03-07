@@ -3,7 +3,7 @@
 <h1>Listing Recipes</span></h1>
 <h6>Recipe Count <span class="badge"><%= @recipes.count %></h6>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Title</th>
@@ -28,7 +28,7 @@
         <td><%= recipe.food_preference.name %></td>
         <td><%= recipe.cuisine.name %></td>
         <td><%= recipe.ingredients %></td>
-        <td><%= recipe.procedure %></td>
+        <td><%= truncate(recipe.procedure, length: 17) %></td>
         <td><%= link_to 'Show', recipe, :class => "btn btn-primary btn-small" %></td>
         <%if user_signed_in? %>
         <td><%= link_to 'Edit', edit_recipe_path(recipe), :class => "btn btn-success btn-small" %></td>

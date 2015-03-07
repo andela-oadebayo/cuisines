@@ -24,6 +24,14 @@
         <li class="active"><%= link_to "Recipes", recipes_path %><span class="sr-only">(current)</span></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
+        <li>
+          <%= form_tag recipes_path, method: "GET", class: "navbar-form navbar-left" do %>
+              <div class="form-group">
+                <%= text_field_tag :search, params[:search], class: "form-control"%>
+                <%= submit_tag "Search", name: "nil", class: "btn btn-default"%>
+              </div>
+          <%end%>
+        </li>
         <% if user_signed_in? %>
         <li><%= link_to "#{current_user.email}" %></li>
         <li class="active"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
@@ -37,47 +45,49 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-xs-2">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h2 class="panel-title">Food Preferences</h2>
+      <% if user_signed_in? %>
+        <div class="col-xs-2">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h2 class="panel-title">Food Preferences</h2>
+            </div>
+            <% @food_preferences.each do |fp| %>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <%= fp.name%>
+                </li>
+              </ul>
+            <% end %>
           </div>
-          <% @food_preferences.each do |fp| %>
-            <ul class="list-group">
-              <li class="list-group-item">
-              <%= fp.name%>
-              </li>
-            </ul>
-          <% end %>
-        </div>
 
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h2 class="panel-title">Food Type</h2>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h2 class="panel-title">Food Type</h2>
+            </div>
+            <% @food_type.each do |ft| %>
+              <ul class="list-group">
+                <li class="list-group-item">
+                <%= ft.name%>
+                </li>
+              </ul>
+            <% end %>
           </div>
-          <% @food_type.each do |ft| %>
-            <ul class="list-group">
-              <li class="list-group-item">
-              <%= ft.name%>
-              </li>
-            </ul>
-          <% end %>
-        </div>
 
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h2 class="panel-title">Food Type</h2>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h2 class="panel-title">Food Type</h2>
+            </div>
+            <% @cuisines.each do |cu| %>
+              <ul class="list-group">
+                <li class="list-group-item">
+                <%= cu.name%>
+                </li>
+              </ul>
+            <% end %>
           </div>
-          <% @cuisines.each do |cu| %>
-            <ul class="list-group">
-              <li class="list-group-item">
-              <%= cu.name%>
-              </li>
-            </ul>
-          <% end %>
         </div>
-
-      </div>
+      <%end%>
+      
       <div class="col-xs-10">
         <%= yield %>
       </div>
